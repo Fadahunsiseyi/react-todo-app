@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import TodoList from './TodoList';
 
 export class TodoContainer extends Component {
     state = {
@@ -22,11 +23,7 @@ export class TodoContainer extends Component {
        };
   render() {
     return (
-    <ul>
-         {this.state.todos.map((todo) => (
-        <li> {todo.title} </li>
-     ))}
-    </ul>
+     <TodoList  todos={this.state.todos}/>
     )
   }
 }
