@@ -5,23 +5,7 @@ import TodoList from "./TodoList";
 
 export class TodoContainer extends Component {
   state = {
-    todos: [
-      // {
-      //   id: Date.now(),
-      //   title: "Setup development environment",
-      //   completed: true,
-      // },
-      // {
-      //   id: Date.now(),
-      //   title: "Develop website and add content",
-      //   completed: false,
-      // },
-      // {
-      //   id: Date.now(),
-      //   title: "Deploy to live server",
-      //   completed: false,
-      // },
-    ],
+    todos: [],
   };
   handleChange = (id) => {
     console.log("clicked", id);
@@ -66,6 +50,11 @@ export class TodoContainer extends Component {
         return todo
       })
      })
+  }
+  componentDidMount() {
+    fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
+      .then(response => response.json())
+      .then(data => this.setState({todos: data}));
   }
   render() {
     return (
