@@ -24,50 +24,52 @@ export class TodoContainer extends Component {
     ],
   };
   handleChange = (id) => {
-    console.log('clicked',id)
-    this.setState(prevState => ({
+    console.log("clicked", id);
+    this.setState((prevState) => ({
       todos: prevState.todos.map((todo) => {
-        if(todo.id === id) {
-         return {
-          ...todo,
-          completed: !todo.completed
-         }
+        if (todo.id === id) {
+          return {
+            ...todo,
+            completed: !todo.completed,
+          };
         }
-        return todo
-      })
-    }))
-  }
+        return todo;
+      }),
+    }));
+  };
   deleteTodo = (id) => {
-    console.log('deleteTodo',id)
-    this.setState(prev => ({
+    console.log("deleteTodo", id);
+    this.setState((prev) => ({
       todos: [
-        ...prev.todos.filter(todo => {
+        ...prev.todos.filter((todo) => {
           return todo.id !== id;
-        })
-      ]
-    }))
-  }
-  addTodoItem=(title)=>{
+        }),
+      ],
+    }));
+  };
+  addTodoItem = (title) => {
     const newTodo = {
       id: Date.now(),
       title: title,
-      completed: false
+      completed: false,
     };
     this.setState({
-      todos: [...this.state.todos, newTodo]
-    })
-  }
+      todos: [...this.state.todos, newTodo],
+    });
+  };
   render() {
     return (
-      <>
-        <Header />
-        <InputTodo addTodoProps={this.addTodoItem} />
-        <TodoList
-         todos={this.state.todos}
-         handleChangeProps={this.handleChange}
-         deleteTodoProps={this.deleteTodo}
+      <div className="container">
+        <div className='inner'>
+          <Header />
+          <InputTodo addTodoProps={this.addTodoItem} />
+          <TodoList
+            todos={this.state.todos}
+            handleChangeProps={this.handleChange}
+            deleteTodoProps={this.deleteTodo}
           />
-      </>
+        </div>
+      </div>
     );
   }
 }
