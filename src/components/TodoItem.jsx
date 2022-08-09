@@ -30,7 +30,7 @@ export class TodoItem extends Component {
     }
     return (
       <li className={styles.item}>
-        <div onDoubleClick={this.handleEditing}>
+        <div onDoubleClick={this.handleEditing} style={viewMode}>
           <input
             className={styles.checkbox}
             type="checkbox"
@@ -40,7 +40,14 @@ export class TodoItem extends Component {
           <button onClick={() => this.props.deleteTodoProps(id)}>Delete</button>
           <span style={completed ? completedStyle : null}>{title}</span>
         </div>
-        <input type="text" className={styles.textInput} />
+        <input type="text"
+         style={editMode}
+          className={styles.textInput}
+          value={title}
+          onChange={e => {
+            this.props.setUpdate(e.target.value,id)
+          }}
+          />
       </li>
     );
   }
