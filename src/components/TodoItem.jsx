@@ -5,7 +5,9 @@ export class TodoItem extends Component {
     return (
       <div>
         <li>
-      <input type='checkbox' checked={this.props.todo.checked} onChange={() => this.props.handleChangeProps(this.props.todo.id)} /> {this.props.todo.title}
+      <input type='checkbox' checked={this.props.todo.checked} onChange={() => this.props.handleChangeProps(this.props.todo.id)} />
+      <button>Delete</button>
+       {this.props.todo.title}
       </li>
       </div>
     )
