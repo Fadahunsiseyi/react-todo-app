@@ -51,11 +51,21 @@ export class TodoContainer extends Component {
       })
      })
   }
-  componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
-      .then(response => response.json())
-      .then(data => this.setState({todos: data}));
+ componentDidUpdate(prevState, prevProps) {
+  if(prevState.todos !== this.state.todos) {
+    const todoStorage = JSON.stringify(this.state.todos)
+    localStorage.setItem('todos', todoStorage)
   }
+ }
+ componentDidMount() {
+  const todoStorage = JSON.parse(localStorage.getItem('todos'))
+  if(todoStorage) {
+    this.setState({
+      todos: todoStorage
+    })
+  }
+ }
+
   render() {
     return (
       <div className="container">
