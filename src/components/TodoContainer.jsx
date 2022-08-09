@@ -6,21 +6,21 @@ import TodoList from "./TodoList";
 export class TodoContainer extends Component {
   state = {
     todos: [
-      {
-        id: 1,
-        title: "Setup development environment",
-        completed: true,
-      },
-      {
-        id: 2,
-        title: "Develop website and add content",
-        completed: false,
-      },
-      {
-        id: 3,
-        title: "Deploy to live server",
-        completed: false,
-      },
+      // {
+      //   id: Date.now(),
+      //   title: "Setup development environment",
+      //   completed: true,
+      // },
+      // {
+      //   id: Date.now(),
+      //   title: "Develop website and add content",
+      //   completed: false,
+      // },
+      // {
+      //   id: Date.now(),
+      //   title: "Deploy to live server",
+      //   completed: false,
+      // },
     ],
   };
   handleChange = (id) => {
@@ -47,11 +47,21 @@ export class TodoContainer extends Component {
       ]
     }))
   }
+  addTodoItem=(title)=>{
+    const newTodo = {
+      id: Date.now(),
+      title: title,
+      completed: false
+    };
+    this.setState({
+      todos: [...this.state.todos, newTodo]
+    })
+  }
   render() {
     return (
       <>
         <Header />
-        <InputTodo/>
+        <InputTodo addTodoProps={this.addTodoItem} />
         <TodoList
          todos={this.state.todos}
          handleChangeProps={this.handleChange}
