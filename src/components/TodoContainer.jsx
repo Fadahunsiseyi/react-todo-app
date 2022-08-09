@@ -24,14 +24,6 @@ export class TodoContainer extends Component {
   };
   handleChange = (id) => {
     console.log('clicked',id)
-    // this.setState({
-    //   todos: this.state.todos.map((todo) => {
-    //     if(todo.id === id) {
-    //       todo.completed = !todo.completed
-    //     }
-    //     return todo
-    //   })
-    // })
     this.setState(prevState => ({
       todos: prevState.todos.map((todo) => {
         if(todo.id === id) {
@@ -44,11 +36,25 @@ export class TodoContainer extends Component {
       })
     }))
   }
+  deleteTodo = (id) => {
+    console.log('deleteTodo',id)
+    this.setState(prev => ({
+      todos: [
+        ...prev.todos.filter(todo => {
+          return todo.id !== id;
+        })
+      ]
+    }))
+  }
   render() {
     return (
       <>
         <Header />
-        <TodoList todos={this.state.todos} handleChangeProps={this.handleChange} />
+        <TodoList
+         todos={this.state.todos}
+         handleChangeProps={this.handleChange}
+         deleteTodoProps={this.deleteTodo}
+          />
       </>
     );
   }
