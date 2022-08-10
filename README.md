@@ -8,7 +8,6 @@
 ## Live Demo
 
 [Live demo](https://fadahunsiseyi.github.io/)
-
 ## Built With
 
 - HTML
