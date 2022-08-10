@@ -8,7 +8,6 @@ export class TodoContainer extends Component {
     todos: [],
   };
   handleChange = (id) => {
-    console.log("clicked", id);
     this.setState((prevState) => ({
       todos: prevState.todos.map((todo) => {
         if (todo.id === id) {
@@ -22,7 +21,6 @@ export class TodoContainer extends Component {
     }));
   };
   deleteTodo = (id) => {
-    console.log("deleteTodo", id);
     this.setState((prev) => ({
       todos: [
         ...prev.todos.filter((todo) => {

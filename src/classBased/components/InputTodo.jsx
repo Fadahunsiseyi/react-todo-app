@@ -5,7 +5,6 @@ export class InputTodo extends Component {
         title: '',
       }
       onChange=(e)=> {
-        console.log('I am changing')
         this.setState({
             [e.target.name]: e.target.value
         })

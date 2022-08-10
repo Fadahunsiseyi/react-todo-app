@@ -7,13 +7,11 @@ export class TodoItem extends Component {
   };
 
   handleEditing = () => {
-    console.log("edit mode activated");
     this.setState({
       editing: true,
     });
   };
   handleUpdatedDone =(e)=> {
-    console.log(e.key,'in the todo item')
     if(e.key==="Enter") {
       this.setState({
         editing: false,

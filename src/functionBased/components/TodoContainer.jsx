@@ -20,7 +20,6 @@ const TodoContainer = () => {
   };
 
   const deleteTodo = (id) => {
-    console.log("deleteTodo", id);
     setTodos([
       ...todos.filter((todo) => {
         return todo.id !== id;
