@@ -1,35 +1,37 @@
-import React, { useState, useEffect } from "react";
-import Header from "./Header";
-import InputTodo from "./InputTodo";
-import TodoList from "./TodoList";
+import React, { useState, useEffect } from 'react';
+import Header from './Header';
+import InputTodo from './InputTodo';
+import TodoList from './TodoList';
 
 const TodoContainer = () => {
+  function getInitialTodos() {
+    // getting stored items
+    const temp = localStorage.getItem('todos');
+    const savedTodos = JSON.parse(temp);
+    return savedTodos || [];
+  }
   const [todos, setTodos] = useState(getInitialTodos());
   const handleChange = (id) => {
-    setTodos((prevState) =>
-      prevState.map((todo) => {
-        if (todo.id === id) {
-          return {
-            ...todo,
-            completed: !todo.completed,
-          };
-        }
-        return todo;
-      })
-    );
+    setTodos((prevState) => prevState.map((todo) => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          completed: !todo.completed,
+        };
+      }
+      return todo;
+    }));
   };
 
   const deleteTodo = (id) => {
     setTodos([
-      ...todos.filter((todo) => {
-        return todo.id !== id;
-      }),
+      ...todos.filter((todo) => todo.id !== id),
     ]);
   };
   const addTodoItem = (title) => {
     const newTodo = {
       id: Date.now(),
-      title: title,
+      title,
       completed: false,
     };
     setTodos([...todos, newTodo]);
@@ -38,22 +40,17 @@ const TodoContainer = () => {
     setTodos(
       todos.map((todo) => {
         if (todo.id === id) {
+          // eslint-disable-next-line no-param-reassign
           todo.title = updatedTitle;
         }
         return todo;
-      })
+      }),
     );
   };
-  function getInitialTodos() {
-    // getting stored items
-    const temp = localStorage.getItem("todos");
-    const savedTodos = JSON.parse(temp);
-    return savedTodos || [];
-  }
   useEffect(() => {
     // storing todos items
     const todoStorage = JSON.stringify(todos);
-    localStorage.setItem("todos", todoStorage);
+    localStorage.setItem('todos', todoStorage);
   }, [todos]);
 
   return (

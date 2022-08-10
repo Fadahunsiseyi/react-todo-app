@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { FaTrash } from "react-icons/fa";
-import styles from "./TodoItem.module.css";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { FaTrash } from 'react-icons/fa';
+import styles from './TodoItem.module.css';
 
 const TodoItem = (props) => {
   const [editing, setEditing] = useState(false);
@@ -10,28 +11,32 @@ const TodoItem = (props) => {
   };
 
   const handleUpdatedDone = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       setEditing(false);
     }
   };
 
   const completedStyle = {
-    fontStyle: "italic",
-    color: "#595959",
+    fontStyle: 'italic',
+    color: '#595959',
     opacity: 0.4,
-    textDecoration: "line-through",
+    textDecoration: 'line-through',
   };
 
-  const { completed, id, title } = props.todo;
+  const {
+    todo: { completed, id, title },
+  } = props;
 
-  let viewMode = {};
-  let editMode = {};
+  const viewMode = {};
+  const editMode = {};
 
   if (editing) {
-    viewMode.display = "none";
+    viewMode.display = 'none';
   } else {
-    editMode.display = "none";
+    editMode.display = 'none';
   }
+
+  const { handleChangeProps, deleteTodoProps, setUpdate } = props;
 
   return (
     <li className={styles.item}>
@@ -40,11 +45,12 @@ const TodoItem = (props) => {
           type="checkbox"
           className={styles.checkbox}
           checked={completed}
-          onChange={() => props.handleChangeProps(id)}
+          onChange={() => handleChangeProps(id)}
         />
         <button
-          onClick={() => props.deleteTodoProps(id)}
-          style={{ color: "orangered", fontSize: "16px" }}
+          type="button"
+          onClick={() => deleteTodoProps(id)}
+          style={{ color: 'orangered', fontSize: '16px' }}
         >
           <FaTrash />
         </button>
@@ -56,7 +62,7 @@ const TodoItem = (props) => {
         className={styles.textInput}
         value={title}
         onChange={(e) => {
-          props.setUpdate(e.target.value, id);
+          setUpdate(e.target.value, id);
         }}
         onKeyDown={handleUpdatedDone}
       />
@@ -65,3 +71,10 @@ const TodoItem = (props) => {
 };
 
 export default TodoItem;
+
+TodoItem.propTypes = {
+  todo: PropTypes.objectOf(PropTypes.string, PropTypes.string, PropTypes.bool).isRequired,
+  handleChangeProps: PropTypes.func.isRequired,
+  deleteTodoProps: PropTypes.func.isRequired,
+  setUpdate: PropTypes.func.isRequired,
+};
