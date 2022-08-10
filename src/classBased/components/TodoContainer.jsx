@@ -40,34 +40,34 @@ export class TodoContainer extends Component {
     });
   };
   setUpdate = (updatedTitle, id) => {
-     this.setState({
-      todos: this.state.todos.map(todo => {
-        if(todo.id === id) {
-          todo.title = updatedTitle
-        }
-        return todo
-      })
-     })
-  }
- componentDidUpdate(prevState, prevProps) {
-  if(prevState.todos !== this.state.todos) {
-    const todoStorage = JSON.stringify(this.state.todos)
-    localStorage.setItem('todos', todoStorage)
-  }
- }
- componentDidMount() {
-  const todoStorage = JSON.parse(localStorage.getItem('todos'))
-  if(todoStorage) {
     this.setState({
-      todos: todoStorage
-    })
+      todos: this.state.todos.map((todo) => {
+        if (todo.id === id) {
+          todo.title = updatedTitle;
+        }
+        return todo;
+      }),
+    });
+  };
+  componentDidUpdate(prevState, prevProps) {
+    if (prevState.todos !== this.state.todos) {
+      const todoStorage = JSON.stringify(this.state.todos);
+      localStorage.setItem("todos", todoStorage);
+    }
   }
- }
+  componentDidMount() {
+    const todoStorage = JSON.parse(localStorage.getItem("todos"));
+    if (todoStorage) {
+      this.setState({
+        todos: todoStorage,
+      });
+    }
+  }
 
   render() {
     return (
       <div className="container">
-        <div className='inner'>
+        <div className="inner">
           <Header />
           <InputTodo addTodoProps={this.addTodoItem} />
           <TodoList
