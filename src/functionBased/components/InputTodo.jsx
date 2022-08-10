@@ -31,7 +31,7 @@ const InputTodo = (props) => {
       <input
         type="text"
         className="input-text"
-        placeholder="Enter first Name..."
+        placeholder="Todo..."
         value={inputText.title}
         name="title"
         onChange={onChange}

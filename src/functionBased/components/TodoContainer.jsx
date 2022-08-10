@@ -1,10 +1,10 @@
-import React, {useState } from "react";
+import React, {useState, useEffect } from "react";
 import Header from "./Header";
 import InputTodo from "./InputTodo";
 import TodoList from "./TodoList";
 
 const TodoContainer = () => {
- const [todos, setTodos] = useState([])
+ const [todos, setTodos] = useState(getInitialTodos())
  const handleChange = id => {
   setTodos(prevState =>
     prevState.map(todo => {
@@ -47,20 +47,17 @@ const TodoContainer = () => {
       })
      )
   }
-//  componentDidUpdate(prevState, prevProps) {
-//   if(prevState.todos !== this.state.todos) {
-//     const todoStorage = JSON.stringify(this.state.todos)
-//     localStorage.setItem('todos', todoStorage)
-//   }
-//  }
-//  componentDidMount() {
-//   const todoStorage = JSON.parse(localStorage.getItem('todos'))
-//   if(todoStorage) {
-//     this.setState({
-//       todos: todoStorage
-//     })
-//   }
-//  }
+  function getInitialTodos() {
+    // getting stored items
+    const temp = localStorage.getItem("todos")
+    const savedTodos = JSON.parse(temp)
+    return savedTodos || []
+  }
+  useEffect(() => {
+    // storing todos items
+    const todoStorage = JSON.stringify(todos)
+    localStorage.setItem("todos", todoStorage)
+  }, [todos])
 
 
     return (
