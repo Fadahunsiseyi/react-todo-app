@@ -1,6 +1,4 @@
-import React from "react";
+import React from 'react';
 
-const SinglePage = () => {
-  return <div>Hello from single page</div>;
-};
+const SinglePage = () => <div>Hello from single page</div>;
 export default SinglePage;

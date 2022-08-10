@@ -3,7 +3,7 @@ import Header from "./Header";
 import InputTodo from "./InputTodo";
 import TodoList from "./TodoList";
 
-export class TodoContainer extends Component {
+class TodoContainer extends Component {
   state = {
     todos: [],
   };
