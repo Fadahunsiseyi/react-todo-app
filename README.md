@@ -7,7 +7,7 @@
 
 ## Live Demo
 
-[Live demo](https://fadahunsiseyi.github.io/)
+[Live demo](https://fadahunsiseyi.github.io/react-todo-app/)
 
 ## Built With
 
