@@ -45,7 +45,7 @@
   ```
 - On your favourite browser go to http://localhost:3000/
 
-### Tests
+### Test
 
 - **Webhint** linter -`npx hint .` on the root directory.
 - **Stylelint** linter - `npx stylelint "**/*.{css,scss}"` on the root directory.
